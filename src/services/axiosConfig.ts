@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { InternalAxiosRequestConfig } from 'axios';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -12,7 +12,7 @@ const instancesData = {
 export const privateAxiosInstance = axios.create(instancesData);
 export const publicAxiosInstance = axios.create(instancesData);
 
-privateAxiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
+privateAxiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 	const token = localStorage.getItem('token')
 	if (token && config.headers) {
 		config.headers.Authorization = `${token}`;
